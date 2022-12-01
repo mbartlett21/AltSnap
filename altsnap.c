@@ -647,11 +647,11 @@ static pure const TCHAR *ParamsFromCmdline(const TCHAR *cmdl)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// Use -nostdlib and -e_unfuckMain@0 to use this main, -eunfuckMain for x64.
+// Use -nostdlib and -e_ntclMain@0 to use this main, -entclMain for x64.
 #ifdef _MSC_VER
-#pragma comment(linker, "/entry:\"unfuckWinMain\"")
+#pragma comment(linker, "/entry:\"ntclWinMain\"")
 #endif
-void noreturn WINAPI unfuckWinMain(void)
+void noreturn WINAPI ntclWinMain(void)
 {
     HINSTANCE hInst;
     HINSTANCE hPrevInstance = NULL;

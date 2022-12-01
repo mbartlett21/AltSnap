@@ -21,12 +21,12 @@ CFLAGS= -nostdlib -Og -g -ggdb -DLOG_STUFF=1 -m32 -march=i686 -mtune=generic \
 
 default: AltSnap.exe hooks.dll
 
-hooks.dll : hooks.c hooks.h hooksr.o unfuck.h nanolibc.h zones.c snap.c
+hooks.dll : hooks.c hooks.h hooksr.o ntcl.h nanolibc.h zones.c snap.c
 	$(CC) -o hooks.dll hooks.c hooksr.o $(CFLAGS) -mdll -e_DllMain@12 -Wl,--kill-at
 
 #--disable-reloc-section,  -mwindows
-AltSnap.exe : altsnapr.o altsnap.c hooks.h tray.c config.c languages.h languages.c unfuck.h nanolibc.h
-	$(CC) -o AltSnap.exe altsnap.c altsnapr.o $(CFLAGS) -Wl,--tsaware -lcomctl32 -ladvapi32 -lshell32 -e_unfuckWinMain@0
+AltSnap.exe : altsnapr.o altsnap.c hooks.h tray.c config.c languages.h languages.c ntcl.h nanolibc.h
+	$(CC) -o AltSnap.exe altsnap.c altsnapr.o $(CFLAGS) -Wl,--tsaware -lcomctl32 -ladvapi32 -lshell32 -e_ntclWinMain@0
 
 altsnapr.o : altsnap.rc window.rc resource.h AltSnap.exe.manifest media/find.cur media/find.ico media/icon.ico media/tray-disabled.ico media/tray-enabled.ico
 	windres altsnap.rc altsnapr.o -Fpe-i386

@@ -84,11 +84,11 @@ EXELD = $(LDFLAGS) \
 
 default: AltSnap.exe hooks.dll
 
-hooks.dll : hooks.c hooks.h hooksr.o unfuck.h nanolibc.h zones.c snap.c
+hooks.dll : hooks.c hooks.h hooksr.o ntcl.h nanolibc.h zones.c snap.c
 	$(CC) -o hooks.dll hooks.c hooksr.o $(CFLAGS) $(LDFLAGS) -mdll -e_DllMain@12 -Wl,--kill-at
 
-AltSnap.exe : altsnapr.o altsnap.c hooks.h tray.c config.c languages.h languages.c unfuck.h nanolibc.h
-	$(CC) -o AltSnap.exe altsnap.c altsnapr.o $(CFLAGS) $(EXELD) -mwindows -e_unfuckWinMain@0
+AltSnap.exe : altsnapr.o altsnap.c hooks.h tray.c config.c languages.h languages.c ntcl.h nanolibc.h
+	$(CC) -o AltSnap.exe altsnap.c altsnapr.o $(CFLAGS) $(EXELD) -mwindows -e_ntclWinMain@0
 
 altsnapr.o : altsnap.rc window.rc resource.h AltSnap.exe.manifest media/find.cur media/find.ico media/icon.ico media/tray-disabled.ico media/tray-enabled.ico
 	$(WR) altsnap.rc altsnapr.o -Fpe-i386

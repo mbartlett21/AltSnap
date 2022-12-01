@@ -6,7 +6,7 @@
 #define _WIN32_WINNT 0x0600
 #define WINVER 0x0600
 #include <windows.h>
-#include "unfuck.h"
+#include "ntcl.h"
 
 #ifndef LOW_LEVEL_KB_PROC
 	#ifndef DECORATED_HOOKS_DLL_PROCS
